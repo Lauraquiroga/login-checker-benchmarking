@@ -6,9 +6,9 @@ from bitarray import bitarray
 
 class BloomFilter:
     '''
-    Class for Bloom filter, using murmur3 hash function.
+    Class implementing a Bloom filter, using murmur3 hash function.
 
-    A Bloom filter is a space-efficient probabilistic data structure used to test existence over a set.
+    A Bloom filter is a space-efficient probabilistic data structure used to check for existence over a set.
     Frequently described as a 'space-optimized' version of hashing,
     It supports element insertion and, with a very low False Positive probability, existence check.
     It does not support deletion.
@@ -23,6 +23,8 @@ class BloomFilter:
 
     def __init__(self, data_size, fp_prob):
         '''
+        Initialize Bloom Filter parameters
+        
         Parameters:
         data_size (int): Number of elements expected to be stored in bloom filter (should always be greater than 0)
         fp_prob (float): False Positive probability in decimal
@@ -44,7 +46,7 @@ class BloomFilter:
 
     def exists(self, login):
         """
-        Checks if a given username exists in the hash table.
+        Checks if a given username exists in the Bloom Filter.
 
         Parameters:
         login (str): The username to search for.
