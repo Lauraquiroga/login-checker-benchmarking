@@ -15,9 +15,9 @@ class BinarySearch:
 
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
-        float: Time elapsed to fin result
+        float: Time elapsed to find result
         """
-        start_time = time.time()        
+        start_time = time.perf_counter()        
         low = 0
         high = len(self.orderedData)-1
         while low<=high:
@@ -29,5 +29,5 @@ class BinarySearch:
                 low = mid+1
             elif self.orderedData[mid]>self.login:
                 high = mid-1
-        elapsed_time = time.time() - start_time
+        elapsed_time = time.perf_counter() - start_time
         return False, elapsed_time

@@ -16,9 +16,9 @@ class Hashing:
 
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
-        float: Time elapsed to fin result
+        float: Time elapsed to find result
         """
-        start_time = time.time()
-        result = self.login in self.hash_set
-        elapsed_time = time.time() - start_time
+        start_time = time.perf_counter()
+        result = self.login in self.hashData
+        elapsed_time = time.perf_counter() - start_time
         return result, elapsed_time

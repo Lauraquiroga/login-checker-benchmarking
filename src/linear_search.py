@@ -12,12 +12,12 @@ class LinearSearch:
 
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
-        float: Time elapsed to fin result
+        float: Time elapsed to find result
         """
-        start_time = time.time()
+        start_time = time.perf_counter()
         for element in data:
             if login==element:
                 elapsed_time = time.time() - start_time
                 return True, elapsed_time
-        elapsed_time = time.time() - start_time
+        elapsed_time = time.perf_counter() - start_time
         return False, elapsed_time
