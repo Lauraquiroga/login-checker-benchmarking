@@ -2,7 +2,7 @@ import time
 
 class Hashing:
     def __init__(self, data, login):
-        # Storing data as a hash table (dict)
+        # Storing data as a hash table (set)
         self.hashData = set(data)
         self.login = login
 
