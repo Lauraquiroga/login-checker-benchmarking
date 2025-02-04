@@ -1,8 +1,17 @@
 import time
 
 class Hashing:
+    """
+    Class implementing hashing
+    """
     def __init__(self, data):
-        # Storing data as a hash table (set)
+        """
+        Initialize Hashing structure:
+        Store data as a hash table (set)
+
+        Parameters:
+        data (list of str): dataset to search within
+        """
         self.hashData = set(data)
 
     def exists(self, login) :

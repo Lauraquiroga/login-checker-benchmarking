@@ -1,7 +1,17 @@
 import time
 
 class BinarySearch:
+    """
+    Class implementing a Binary Search algorithm
+    """
     def __init__(self, data):
+        """
+        Initialize structure for binary search:
+        Store ordered data
+
+        Parameters:
+        data (list of str): dataset to search within
+        """
         self.orderedData = sorted(data)
 
     def exists(self, login):
