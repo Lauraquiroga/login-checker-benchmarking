@@ -1,11 +1,10 @@
 import time
 
 class BinarySearch:
-    def __init__(self, data, login):
-        self.login = login
+    def __init__(self, data):
         self.orderedData = sorted(data)
 
-    def exists(self):
+    def exists(self, login):
         """
         Implementation of a binary search algorithm over an ordered list.
 
@@ -22,12 +21,12 @@ class BinarySearch:
         high = len(self.orderedData)-1
         while low<=high:
             mid = (high+low)//2
-            if self.orderedData[mid]==self.login:
+            if self.orderedData[mid]==login:
                 elapsed_time = time.time() - start_time
                 return True, elapsed_time
-            elif self.orderedData[mid]<self.login:
+            elif self.orderedData[mid]<login:
                 low = mid+1
-            elif self.orderedData[mid]>self.login:
+            elif self.orderedData[mid]>login:
                 high = mid-1
         elapsed_time = time.perf_counter() - start_time
         return False, elapsed_time

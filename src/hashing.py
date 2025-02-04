@@ -1,12 +1,11 @@
 import time
 
 class Hashing:
-    def __init__(self, data, login):
+    def __init__(self, data):
         # Storing data as a hash table (set)
         self.hashData = set(data)
-        self.login = login
 
-    def exists(self):
+    def exists(self, login) :
         """
         Checks if a given username exists in the hash table.
 
@@ -19,6 +18,6 @@ class Hashing:
         float: Time elapsed to find result
         """
         start_time = time.perf_counter()
-        result = self.login in self.hashData
+        result = login in self.hashData
         elapsed_time = time.perf_counter() - start_time
         return result, elapsed_time
