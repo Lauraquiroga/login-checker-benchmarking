@@ -12,7 +12,7 @@ class LinearSearch:
 
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
-        float: Time elapsed
+        float: Time elapsed to fin result
         """
         start_time = time.time()
         for element in data:
