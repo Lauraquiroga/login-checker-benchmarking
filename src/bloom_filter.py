@@ -24,7 +24,7 @@ class BloomFilter:
     def __init__(self, data_size, fp_prob):
         '''
         Parameters:
-        data_size (int): Number of elements expected to be stored in bloom filter
+        data_size (int): Number of elements expected to be stored in bloom filter (should always be greater than 0)
         fp_prob (float): False Positive probability in decimal
         '''
         # False possible probability in decimal
@@ -54,7 +54,7 @@ class BloomFilter:
         float: Time elapsed to find result
         """
         start_time = time.perf_counter()
-        for i in range(self.hash_count):
+        for i in range(self.k):
             digest = mmh3.hash(login, i) % self.size
             if self.bit_array[digest] == False:
                 # if any of bit is False then,its not present in filter (certain, no False Negatives)

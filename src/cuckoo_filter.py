@@ -1,10 +1,10 @@
 import time
 
 class CuckooFilter:
-    def __init__(self, data, login):
-        self.login = login
+    def __init__(self, data):
+        test=False
 
-    def exists(self):
+    def exists(self, login):
         """
         Checks if a given username exists in the hash table.
 

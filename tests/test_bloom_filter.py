@@ -1,21 +1,58 @@
 import unittest
+import random
 from src.bloom_filter import BloomFilter
-
 
 class TestBloom(unittest.TestCase):
 
-    def test_exists_username_found(self):
+    def test_exists_item_added(self):
+        """
+        Test if an item that is added to the Bloom filter it is found correctly
+        """
         usernames = ['user1', 'user2', 'user3']
-        username = 'user2'
-        # hashing = Hashing(usernames, username)
-        # result, elapsed_time = hashing.exists()
-        # self.assertTrue(result)  # It should return True for an existing username
-        # self.assertGreater(elapsed_time, 0)  # Ensure some time was taken
+        bf = BloomFilter(len(usernames), 0.1)  # 10% fpp
 
-    def test_exists_username_not_found(self):
-        usernames = ['user1', 'user2', 'user3']
-        username = 'user4'
-        # hashing = Hashing(usernames, username)
-        # result, elapsed_time = hashing.exists()
-        # self.assertFalse(result)  # It should return False for a non-existing username
-        # self.assertGreater(elapsed_time, 0)  # Ensure some time was taken
+        # Add items to the Bloom filter
+        bf.initialize_with_dataset(usernames)
+
+        # Check for existance: Since there are no False Negatives, all results must be True
+        for username in usernames:
+            result, elapsed_time = bf.exists(username)
+            self.assertTrue(result)
+            self.assertGreater(elapsed_time, 0)  # Ensure some time was taken
+
+    def test_false_positive_rate(self):
+        """ 
+        Test to check that the false positive rate is within an acceptable range
+        """
+        usernames = [f'user_{x}' for x in range(100)]
+        fpp = 0.1
+        acceptable_fp_range = [0.07, 0.13]
+        bf = BloomFilter(len(usernames), fpp)
+
+        # Add items to the Bloom filter
+        bf.initialize_with_dataset(usernames)
+
+        false_positives = 0
+        total_checks = 1000
+
+        # Perform 1000 checks on items not in the Bloom filter to check false positives
+        for _ in range(total_checks):
+            non_existing_username = f'user{random.randint(6, 1000)}'  # Generate random non-existing username
+            result, _ = bf.exists(non_existing_username)
+            if result:
+                false_positives += 1
+
+        # Check if the false positive rate is within the expected range (i.e. at most given fpp)
+        false_positive_rate = false_positives / total_checks
+        self.assertGreaterEqual(false_positive_rate, acceptable_fp_range[0],
+                                f"False positive rate too low: {false_positive_rate}")
+        self.assertLessEqual(false_positive_rate, acceptable_fp_range[1],
+                             f"False positive rate too high: {false_positive_rate}")
+        
+    def test_edge_case_empty_filter(self):
+        """
+        Test behavior with an empty Bloom filter
+        """
+        bf = BloomFilter(10, 0.1) # 10% fpp
+        result, _ = bf.exists("non_existent_user")
+        self.assertFalse(result, "Expected 'non_existent_user' to not be found in the empty filter.")
