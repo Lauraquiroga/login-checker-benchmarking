@@ -17,7 +17,7 @@ class LinearSearch:
         start_time = time.perf_counter()
         for element in data:
             if login==element:
-                elapsed_time = time.time() - start_time
+                elapsed_time = time.perf_counter() - start_time
                 return True, elapsed_time
         elapsed_time = time.perf_counter() - start_time
         return False, elapsed_time

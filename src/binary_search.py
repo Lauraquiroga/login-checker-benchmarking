@@ -22,7 +22,7 @@ class BinarySearch:
         while low<=high:
             mid = (high+low)//2
             if self.orderedData[mid]==login:
-                elapsed_time = time.time() - start_time
+                elapsed_time = time.perf_counter() - start_time
                 return True, elapsed_time
             elif self.orderedData[mid]<login:
                 low = mid+1
