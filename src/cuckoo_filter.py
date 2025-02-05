@@ -1,6 +1,5 @@
 import time
 import mmh3
-import math
 import random
 from cuckoo_bucket import Bucket
 
@@ -124,6 +123,32 @@ class CuckooFilter:
 
         self.size = self.size - 1
         raise Exception('Filter is full')
+    
+    def insert_from_dataset(self, logins):
+        """
+        Inserts multiple login elements into the filter.
+
+        Parameters:
+        logins (list of str): A list of login items to be inserted.
+
+        Returns:
+        int: Number of successfully inserted logins.
+        
+        Raises:
+        Exception: If the filter becomes full before all insertions are completed.
+        """
+        successful_insertions = 0
+
+        for login in logins:
+            try:
+                self.insert(login)
+                successful_insertions += 1
+            except Exception as e:
+                print(f"Failed to insert {login}: {e}")
+                break  # Stop inserting if the filter is full
+        
+        return successful_insertions
+
 
     def exists(self, login):
         """
