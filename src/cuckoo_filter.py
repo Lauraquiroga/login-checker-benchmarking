@@ -2,6 +2,7 @@ import time
 import mmh3
 import math
 import random
+from cuckoo_bucket import Bucket
 
 class CuckooFilter:
     """
@@ -37,6 +38,8 @@ class CuckooFilter:
 
         # Elements currently stored by the filter
         self.stored = 0
+        # List of Buckets
+        self.buckets = [Bucket(size=b) for _ in range(self.capacity)]
 
     def fingerprint(self, item):
         '''
@@ -68,7 +71,7 @@ class CuckooFilter:
     
     def potential_buckets(self, item, fingerprint):
         '''
-        Compute the alternative indix for storing an item
+        Compute the alternative index for storing an item
 
         Parameters:
         item (str): The string to be inserted in the filter
@@ -106,10 +109,21 @@ class CuckooFilter:
         elif self.buckets[i2].insert(fingerprint):
             return i2
         
-        # Eviction
-        i = random.choice((i1, i2))
+        # Eviction: If both buckets are full
+        i = random.choice((i1, i2)) # Randomly select one of the buckets for eviction
 
-        #To-Do: Eviction loop
+        # Continue until new element and evicted one(s) are placed into buckets or until max. number of evictions is reached
+        for evictions in range(self.max_evictions):
+            # Evict the fingerprint at i
+            fingerprint = self.buckets[i].swap(fingerprint)
+            # Recompute alternative index for evicted fingerprint
+            i = (i ^ self.index_hash(fingerprint)) % self.capacity
+            # Try insertion of evicted fingerprint
+            if self.buckets[i].insert(fingerprint):
+                return i
+
+        self.size = self.size - 1
+        raise Exception('Filter is full')
 
     def exists(self, login):
         """
@@ -124,6 +138,10 @@ class CuckooFilter:
         float: Time elapsed to find result
         """
         start_time = time.perf_counter()
-        ## Implement algorithm
+
+        fingerprint = self.fingerprint(login)
+        i1, i2 = self.calculate_index_pair(login, fingerprint)
+        result = (fingerprint in self.buckets[i1]) or (fingerprint in self.buckets[i2])
+
         elapsed_time = time.perf_counter() - start_time
-        return False, elapsed_time
+        return result, elapsed_time

@@ -25,7 +25,7 @@ class TestBloom(unittest.TestCase):
         Test to check that the false positive rate is within an acceptable range
         """
         usernames = [f'user_{x}' for x in range(100)]
-        fpp = 0.1
+        fpp = 0.1 # 10% fpp
         acceptable_fp_range = [0.07, 0.13]
         bf = BloomFilter(len(usernames), fpp)
 
