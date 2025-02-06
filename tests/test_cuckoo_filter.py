@@ -1,11 +1,20 @@
 import unittest
+import math
 from src.cuckoo_filter import CuckooFilter
 
 class TestCuckoo(unittest.TestCase):
 
-    def test_exists_item_added(self):
+    def test_initialization(self):
         """
-        Test if an item that is added to the Bloom filter it is found correctly
+        Test initialization: capacity and fingerprint size calculations
+        """
+        filter = CuckooFilter(data_size=100, fp_prob=0.01)
+        self.assertEqual(filter.capacity, math.ceil(100 / (0.9 * 2)))
+        self.assertEqual(filter.fingerprint_size, math.ceil(math.log2(2 * 2 / 0.01) / 8))
+                                                            
+    def test_exists_items_added(self):
+        """
+        Test if an item that is added to the Cuckoo filter it is found correctly
         """
         usernames = ['user1', 'user2', 'user3']
         cf = CuckooFilter(len(usernames), 0.1)  # 10% fpp
@@ -18,3 +27,35 @@ class TestCuckoo(unittest.TestCase):
             result, elapsed_time = cf.exists(username)
             self.assertTrue(result)
             self.assertGreater(elapsed_time, 0)  # Ensure some time was taken
+
+    def test_insertion_and_existence(self):
+        """
+        Test using single-item insertion
+        """
+        filter = CuckooFilter(data_size=100, fp_prob=0.01)
+        logins = ["user1", "user2", "user3"]
+        for login in logins:
+            filter.insert(login)
+        for login in logins:
+            self.assertTrue(filter.exists(login)[0])
+
+    def test_full_filter(self):
+        """
+        Test filter is full
+        """
+        filter = CuckooFilter(data_size=10, fp_prob=0.01, max_evictions=20)
+        logins = [f"user{i}" for i in range(20)]  # More items than the filter's capacity
+        try:
+            filter.initialize_with_dataset(logins)
+        except Exception as e:
+            self.assertEqual(str(e), 'Filter is full')
+
+    def test_edge_case_empty_filter(self):
+        """
+        Test behavior with an empty Cuckoo filter.
+
+        False result always expected (No elements inserted -> no probability of False Positive = 0)
+        """
+        bf = CuckooFilter(10, 0.01)
+        result, _ = bf.exists("non_existent_user")
+        self.assertFalse(result, "Expected 'non_existent_user' to not be found in the empty filter.")

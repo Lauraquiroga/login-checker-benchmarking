@@ -201,7 +201,6 @@ class CuckooFilter:
         Checks if a given username exists in the Cuckoo filter.
 
         Parameters:
-        
         login (str): The username to search for.
 
         Returns:
