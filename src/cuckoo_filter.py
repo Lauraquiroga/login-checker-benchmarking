@@ -1,7 +1,8 @@
 import time
 import mmh3
+import math
 import random
-from cuckoo_bucket import Bucket
+from .cuckoo_bucket import Bucket
 
 class CuckooFilter:
     """
@@ -20,25 +21,70 @@ class CuckooFilter:
     """
 
 
-    def __init__(self, capacity, f, b=2, max_evictions=500):
+    def __init__(self, data_size,  fp_prob, b=2, max_evictions=500, load_factor=0.9):
         """
         Initialize Cuckoo Filter parameters
 
         Parameters:
-        capacity (int): Defines the number of buckets the filter contains
-        f (int): The size of the fingerprints in bytes
+        data_size (int): Number of elements to be stored in the filter
+        fp_prob (float): Target False Positive probability in decimal
         b (int): The bucket size (number of entries a bucket can hold)
         max_evictions (int): Maximum number of evictions of an entry before deciding the filter is full
+        load_factor (float): 
         """
-        self.capacity = capacity
-        self.fingerprint_size = f
         self.bucket_size = b
         self.max_evictions = max_evictions
+        self.fp_prob = fp_prob
+        self.n = data_size
+        self.load_factor = load_factor
+
+        self.capacity = self.calculate_capacity()
+        self.fingerprint_size = self.calculate_f_size()
 
         # Elements currently stored by the filter
         self.stored = 0
         # List of Buckets
         self.buckets = [Bucket(size=b) for _ in range(self.capacity)]
+
+    def calculate_capacity(self):
+        """
+        Calculates the capacity of the Cuckoo Filter (number of buckets the filter contains).
+        
+        Defined by the formula:
+            m = N / (a x b)
+
+        Where:
+            m = the capacity
+            N = the number of elements in the dataset to be stored
+            a = the load factor
+            b = the bucket size (number of slots per bucket)
+
+        Return:
+        int: The number of buckets the filter contains
+        """
+        m = math.ceil(self.n / (self.load_factor * self.bucket_size))
+        return m
+    
+    def calculate_f_size(self):
+        """
+        Calculates the fingerprint size in bytes.
+
+        Defined bythe formula:
+            f >= log_2(2b/fp_prob)
+
+        Where:
+            f = Fingerprint size
+            b = The bucket size (number of slots per bucket)
+            fp_prob = False Positive probability in decimal
+
+        We will use the size as: log_2(2b/fp_prob)
+        
+        Return:
+        int: The size of the fingerprints in bytes
+        """
+        f_bits = math.ceil(math.log2(2 * self.bucket_size / self.fp_prob))
+        f_bytes = math.ceil(f_bits / 8)  # Convert to bytes
+        return f_bytes
 
     def fingerprint(self, item):
         '''
@@ -124,7 +170,7 @@ class CuckooFilter:
         self.size = self.size - 1
         raise Exception('Filter is full')
     
-    def insert_from_dataset(self, logins):
+    def initialize_with_dataset(self, logins):
         """
         Inserts multiple login elements into the filter.
 
@@ -165,7 +211,7 @@ class CuckooFilter:
         start_time = time.perf_counter()
 
         fingerprint = self.fingerprint(login)
-        i1, i2 = self.calculate_index_pair(login, fingerprint)
+        i1, i2 = self.potential_buckets(login, fingerprint)
         result = (fingerprint in self.buckets[i1]) or (fingerprint in self.buckets[i2])
 
         elapsed_time = time.perf_counter() - start_time
