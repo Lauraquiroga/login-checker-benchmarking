@@ -35,7 +35,7 @@ class TestCuckoo(unittest.TestCase):
         filter = CuckooFilter(data_size=100, fp_prob=0.01)
         logins = ["user1", "user2", "user3"]
         for login in logins:
-            filter.insert(login)
+            self.assertIsNotNone(filter.insert(login))
         for login in logins:
             result, elapsed_time = filter.exists(login)
             self.assertTrue(result)
@@ -43,10 +43,10 @@ class TestCuckoo(unittest.TestCase):
 
     def test_full_filter(self):
         """
-        Test filter is full
+        Test that filter handles max evictions correctly
         """
         filter = CuckooFilter(data_size=10, fp_prob=0.01, max_evictions=20)
-        logins = [f"user{i}" for i in range(20)]  # More items than the filter's capacity
+        logins = [f"user{i}" for i in range(30)]  # More items than the filter's capacity
         try:
             filter.initialize_with_dataset(logins)
         except Exception as e:
