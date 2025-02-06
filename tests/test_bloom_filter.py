@@ -51,7 +51,9 @@ class TestBloom(unittest.TestCase):
         
     def test_edge_case_empty_filter(self):
         """
-        Test behavior with an empty Bloom filter
+        Test behavior with an empty Bloom filter.
+
+        False result always expected (No elements inserted -> no probability of False Positive = 0)
         """
         bf = BloomFilter(10, 0.1) # 10% fpp
         result, _ = bf.exists("non_existent_user")

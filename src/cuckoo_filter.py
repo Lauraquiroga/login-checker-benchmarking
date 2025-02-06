@@ -75,9 +75,9 @@ class CuckooFilter:
         Where:
             f = Fingerprint size
             b = The bucket size (number of slots per bucket)
-            fp_prob = False Positive probability in decimal
+            fpp = False Positive probability in decimal
 
-        We will use the size as: log_2(2b/fp_prob)
+        We will use the size as: log_2(2b/fpp)
         
         Return:
         int: The size of the fingerprints in bytes
@@ -167,7 +167,7 @@ class CuckooFilter:
             if self.buckets[i].insert(fingerprint):
                 return i
 
-        self.size = self.size - 1
+        self.stored = self.stored - 1
         raise Exception('Filter is full')
     
     def initialize_with_dataset(self, logins):
