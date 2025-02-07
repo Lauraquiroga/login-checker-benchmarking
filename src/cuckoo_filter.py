@@ -3,8 +3,9 @@ import math
 import random
 from .utils import Helper
 from .cuckoo_bucket import Bucket
+from .base_algorithm import BaseAlgorithm
 
-class CuckooFilter:
+class CuckooFilter(BaseAlgorithm):
     """
     Class implementing a Cuckoo filter, using murmur3 hash function.
 
@@ -21,7 +22,7 @@ class CuckooFilter:
     """
 
 
-    def __init__(self, data_size,  fp_prob, b=2, max_evictions=500, load_factor=0.9):
+    def __init__(self, data_size,  fp_prob=0.01, b=2, max_evictions=500, load_factor=0.9):
         """
         Initialize Cuckoo Filter parameters
 

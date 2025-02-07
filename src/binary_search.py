@@ -1,6 +1,7 @@
+from .base_algorithm import BaseAlgorithm
 from .utils import Helper
 
-class BinarySearch:
+class BinarySearch(BaseAlgorithm):
     """
     Class implementing a Binary Search algorithm
     """

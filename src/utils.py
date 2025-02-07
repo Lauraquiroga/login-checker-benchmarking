@@ -29,6 +29,11 @@ class Helper:
             return file.read().splitlines()
         
     @staticmethod
+    def create_new_dataset(size, word_length=10):
+        usernames = Helper.generate_usernames(size, word_length)
+        Helper.save_usernames(usernames)
+        
+    @staticmethod
     def save_usernames(data):
         """
         Saves the list of usernames to a text file with a timestamp suffix in the filename.

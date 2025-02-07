@@ -2,9 +2,10 @@ import math
 import mmh3
 from bitarray import bitarray
 from .utils import Helper
+from .base_algorithm import BaseAlgorithm
 
 
-class BloomFilter:
+class BloomFilter(BaseAlgorithm):
     '''
     Class implementing a Bloom filter, using murmur3 hash function.
 
@@ -21,7 +22,7 @@ class BloomFilter:
     Code adapted from: https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/
     '''
 
-    def __init__(self, data_size, fp_prob):
+    def __init__(self, data_size, fp_prob=0.01):
         '''
         Initialize Bloom Filter parameters
         

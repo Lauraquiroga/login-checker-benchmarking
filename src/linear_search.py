@@ -1,6 +1,7 @@
+from .base_algorithm import BaseAlgorithm
 from .utils import Helper
 
-class LinearSearch:
+class LinearSearch(BaseAlgorithm):
     """
     Class implementing a Linear Search algorithm
     """

@@ -1,6 +1,7 @@
+from .base_algorithm import BaseAlgorithm
 from .utils import Helper
 
-class Hashing:
+class Hashing(BaseAlgorithm):
     """
     Class implementing hashing
     """
