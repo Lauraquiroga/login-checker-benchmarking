@@ -1,7 +1,7 @@
-import time
 import math
 import mmh3
 from bitarray import bitarray
+from .utils import Helper
 
 
 class BloomFilter:
@@ -44,6 +44,7 @@ class BloomFilter:
         # Initialize all bits as 0
         self.bit_array.setall(0)
 
+    @Helper.timing_decorator 
     def exists(self, login):
         """
         Checks if a given username exists in the Bloom Filter.
@@ -55,16 +56,13 @@ class BloomFilter:
         bool: True if there is probability that the username exists in the dataset, False otherwise.
         float: Time elapsed to find result
         """
-        start_time = time.perf_counter()
         for i in range(self.k):
             digest = mmh3.hash(login, i) % self.size
             if self.bit_array[digest] == False:
                 # if any of bit is False then,its not present in filter (certain, no False Negatives)
                 # else there is 1-self.fp_prob probability that it exist
-                elapsed_time = time.perf_counter() - start_time
-                return False, elapsed_time
-        elapsed_time = time.perf_counter() - start_time
-        return True, elapsed_time
+                return False
+        return True
 
     def initialize_with_dataset(self, dataset):
         """

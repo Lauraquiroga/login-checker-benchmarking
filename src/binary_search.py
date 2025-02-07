@@ -1,4 +1,4 @@
-import time
+from .utils import Helper
 
 class BinarySearch:
     """
@@ -14,6 +14,7 @@ class BinarySearch:
         """
         self.orderedData = sorted(data)
 
+    @Helper.timing_decorator 
     def exists(self, login):
         """
         Implementation of a binary search algorithm over an ordered list.
@@ -25,18 +26,15 @@ class BinarySearch:
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
         float: Time elapsed to find result
-        """
-        start_time = time.perf_counter()        
+        """      
         low = 0
         high = len(self.orderedData)-1
         while low<=high:
             mid = (high+low)//2
             if self.orderedData[mid]==login:
-                elapsed_time = time.perf_counter() - start_time
-                return True, elapsed_time
+                return True
             elif self.orderedData[mid]<login:
                 low = mid+1
             elif self.orderedData[mid]>login:
                 high = mid-1
-        elapsed_time = time.perf_counter() - start_time
-        return False, elapsed_time
+        return False

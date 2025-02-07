@@ -1,8 +1,18 @@
 from datetime import datetime
 import random
 import string
+import time
 
 class Helper:
+    @staticmethod
+    def timing_decorator(func):
+        def wrapper(*args, **kwargs):
+            start_time = time.perf_counter()
+            result = func(*args, **kwargs)
+            elapsed_time = time.perf_counter() - start_time
+            return result, elapsed_time  # Return both the function result and execution time
+        return wrapper
+
 
     @staticmethod
     def load_usernames(file_path):

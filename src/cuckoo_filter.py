@@ -1,7 +1,7 @@
-import time
 import mmh3
 import math
 import random
+from .utils import Helper
 from .cuckoo_bucket import Bucket
 
 class CuckooFilter:
@@ -195,7 +195,7 @@ class CuckooFilter:
         
         return successful_insertions
 
-
+    @Helper.timing_decorator 
     def exists(self, login):
         """
         Checks if a given username exists in the Cuckoo filter.
@@ -207,11 +207,8 @@ class CuckooFilter:
         bool: True if the username exists in the dataset, False otherwise.
         float: Time elapsed to find result
         """
-        start_time = time.perf_counter()
-
         fingerprint = self.fingerprint(login)
         i1, i2 = self.potential_buckets(login, fingerprint)
         result = (fingerprint in self.buckets[i1]) or (fingerprint in self.buckets[i2])
 
-        elapsed_time = time.perf_counter() - start_time
-        return result, elapsed_time
+        return result

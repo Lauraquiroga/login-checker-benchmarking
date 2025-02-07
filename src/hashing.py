@@ -1,4 +1,4 @@
-import time
+from .utils import Helper
 
 class Hashing:
     """
@@ -14,6 +14,7 @@ class Hashing:
         """
         self.hashData = set(data)
 
+    @Helper.timing_decorator 
     def exists(self, login) :
         """
         Checks if a given username exists in the hash table.
@@ -26,7 +27,5 @@ class Hashing:
         bool: True if the username exists in the dataset, False otherwise.
         float: Time elapsed to find result
         """
-        start_time = time.perf_counter()
         result = login in self.hashData
-        elapsed_time = time.perf_counter() - start_time
-        return result, elapsed_time
+        return result

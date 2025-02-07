@@ -1,4 +1,4 @@
-import time
+from .utils import Helper
 
 class LinearSearch:
     """
@@ -13,6 +13,7 @@ class LinearSearch:
         """
         self.data = data
 
+    @Helper.timing_decorator 
     def exists(self, login):
         """
         Implementation of a linear search algorithm over an unordered list.
@@ -25,10 +26,7 @@ class LinearSearch:
         bool: True if the username exists in the dataset, False otherwise.
         float: Time elapsed to find result
         """
-        start_time = time.perf_counter()
         for element in self.data:
             if login==element:
-                elapsed_time = time.perf_counter() - start_time
-                return True, elapsed_time
-        elapsed_time = time.perf_counter() - start_time
-        return False, elapsed_time
+                return True
+        return False

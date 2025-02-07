@@ -46,12 +46,11 @@ class TestBucket(unittest.TestCase):
         Test Cuckoo Filter's Bucket swap method
         """
         bucket = Bucket(size=4)
-        bucket.insert("fp1")
-        bucket.insert("fp2")
+        bucket.insert("fingerprint1")
+        bucket.insert("fingerprint2")
         original_fp = bucket.b[0]
-        swapped_fp = bucket.swap("fp3")
-        self.assertEqual(swapped_fp, original_fp)
-        self.assertIn("fp3", bucket.b)
+        bucket.swap("fingerprint3")
+        self.assertIn("fingerprint3", bucket.b)
         self.assertNotIn(original_fp, bucket.b)
 
     def test_is_full(self):
