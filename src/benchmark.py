@@ -44,15 +44,16 @@ class Benchmark:
         dict: A dictionary containing the average execution times for each algorithm across different dataset sizes.
         """
         data_size = len(self.dataset)
-        n_steps = 10000 #10k
+        n_steps = 10 #10k
         step_size = data_size//n_steps
         
         for i in range(n_steps):
             length = (i+1) * step_size
             search_space = self.dataset[:length]
-
+            self.dataset_sizes.append(length)
+            print(length)
             linear = LinearSearch(search_space)
-            self.results['Binary'].append(self.test_algorithm(linear))
+            self.results['Linear'].append(self.test_algorithm(linear))
 
             binary = BinarySearch(search_space)
             self.results['Binary'].append(self.test_algorithm(binary))
@@ -101,7 +102,7 @@ class Benchmark:
         Return:
         None
         """
-        fig = plt.figure()
+        plt.figure()
 
         plt.ylabel('Run time (s)')
         plt.xlabel('Size of the dataset')
@@ -113,3 +114,52 @@ class Benchmark:
 
         plt.legend()
         plt.show()
+
+        for alg, times in self.results.items():
+            plt.figure()
+
+            plt.ylabel('Run time (s)')
+            plt.xlabel('Size of the dataset')
+            plt.title(f"Run Time Complexity - {alg}")
+
+            plt.plot(self.dataset_sizes, times)
+
+            plt.show()
+
+
+    def show_plot_comparison_from_results(self, results):
+        """
+        Generates and displays a comparison plot of execution times for each search algorithm.
+
+        The x-axis represents the dataset size, and the y-axis represents the average execution time.
+        Each algorithm is represented by a different color.
+
+        The results are retrieved from the `self.results` dictionary.
+
+        Return:
+        None
+        """
+        plt.figure()
+
+        plt.ylabel('Run time (s)')
+        plt.xlabel('Size of the dataset')
+        plt.title(f"Comparison of Run Time Complexity")
+
+        # Plot each algorithm's results
+        for alg, times in results['Exec_times'].items():
+            plt.plot(results["Data_sizes"], times, label=alg, color=self.colour_key[alg])
+
+        plt.legend()
+        plt.show()
+
+        # Individual plots
+        for alg, times in results['Exec_times'].items():
+            plt.figure()
+
+            plt.ylabel('Run time (s)')
+            plt.xlabel('Size of the dataset')
+            plt.title(f"Run Time Complexity - {alg}")
+
+            plt.plot(results["Data_sizes"], times)
+
+            plt.show()

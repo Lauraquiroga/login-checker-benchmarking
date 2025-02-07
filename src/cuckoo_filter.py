@@ -22,7 +22,7 @@ class CuckooFilter(BaseAlgorithm):
     """
 
 
-    def __init__(self, data_size,  fp_prob=0.01, b=2, max_evictions=500, load_factor=0.9):
+    def __init__(self, data_size,  fp_prob=0.01, b=4, max_evictions=500, load_factor=0.75):
         """
         Initialize Cuckoo Filter parameters
 
@@ -191,7 +191,7 @@ class CuckooFilter(BaseAlgorithm):
                 self.insert(login)
                 successful_insertions += 1
             except Exception as e:
-                print(f"Failed to insert {login}: {e}")
+                print(f"Failed to insert {login} at size {successful_insertions}: {e}")
                 break  # Stop inserting if the filter is full
         
         return successful_insertions
