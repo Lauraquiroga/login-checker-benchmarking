@@ -13,7 +13,7 @@ This project implements five algorithms—linear search, binary search, hashing,
 │&emsp;&emsp;│── usernames_1M.txt  <-- Dataset file used to perform the runtime complexity analysis     
 │&emsp;&emsp;│── 📂 results/  <-- Folder where results are stored after executing the program     
 │        
-│── 📂 plots/  <-- Folder where the plots showing sample results are stored.       
+│── 📂 plots/  <-- Plots showing sample results           
 │        
 │── 📂 src/   
 │&emsp;&emsp;│── benchmark.py   <-- Your benchmarking script       
@@ -27,11 +27,15 @@ This project implements five algorithms—linear search, binary search, hashing,
 │&emsp;&emsp;│── cuckoo_bucket.py  <-- Implementation of Cuckoo Bucket       
 │       
 │── 📂 tests/  <-- Unit tests     
-│&emsp;&emsp;│── test_search_algorithms.py  <--     
-│&emsp;&emsp;│── test_search_algorithms.py  <--     
-│&emsp;&emsp;│── test_search_algorithms.py  <--     
+│&emsp;&emsp;│── test_search_algorithms.py  <-- Unit tests for the Linear and Binary search algorithms    
+│&emsp;&emsp;│── test_hashing.py  <-- Unit tests for Hashing      
+│&emsp;&emsp;│── test_bloom_filter.py  <-- Unit tests for the Bloom Filter      
+│&emsp;&emsp;│── test_cuckoo_filter.py  <-- Unit tests for the Cuckoo Filter      
+│&emsp;&emsp;│── test_cuckoo_bucket.py  <-- Unit tests for the Cuckoo Bucket      
 │      
 │── README.md       
+│── login_checker.py  <-- File containing main Python script             
+│── requirements.txt  <-- Project requirements           
 
 ## Setup instructions   
 
