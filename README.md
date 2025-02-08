@@ -73,7 +73,7 @@ Follow these steps to run the project:
    ```
    This will run the simulation with the dataset included in the data folder (usernames_1M.txt).       
    To use a custom dataset, place your file in the data folder and update the filename in login_checker.py.               
-   If you want to run the project with a different number of simulation steps, update the n_steps parameter in the initialization of the Benchmark() object in the login_checker.py file.     
+   If you want to run the project with a different number of simulation steps (variations of sizes in the dataset), update the n_steps parameter in the initialization of the Benchmark() object in the login_checker.py file.     
    After the execution, the results will be saved in the data/results folder.           
 
 4. **Run the unit tests**            
