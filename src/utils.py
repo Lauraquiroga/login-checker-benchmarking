@@ -5,8 +5,29 @@ import time
 import json
 
 class Helper:
+    """
+    A utility class containing helper methods for handling usernames and timing functions.
+    
+    The `Helper` class includes static methods to:
+    - Measure the execution time of functions.
+    - Load usernames from a file.
+    - Create and save a new dataset of randomly generated usernames.
+    """
+
     @staticmethod
     def timing_decorator(func):
+        """
+        A decorator that measures the execution time of a function.
+        
+        This decorator wraps around a function, calculates the time taken to execute the function,
+        and returns both the result of the function and the elapsed time.
+
+        Parameters:
+        func (function): The function to be wrapped and timed.
+
+        Returns:
+        tuple: A tuple containing the result of the function and the execution time in seconds.
+        """
         def wrapper(*args, **kwargs):
             start_time = time.perf_counter()
             result = func(*args, **kwargs)
@@ -31,6 +52,19 @@ class Helper:
         
     @staticmethod
     def create_new_dataset(size, word_length=10):
+        """
+        Create a new dataset of randomly generated usernames and save them to a file.
+
+        This method generates a list of random usernames with a given size and length, 
+        and saves the generated usernames to a file.
+
+        Parameters:
+        size (int): The number of usernames to generate.
+        word_length (int, optional): The length of each generated username. Default is 10 characters.
+
+        Returns:
+        None
+        """
         usernames = Helper.generate_usernames(size, word_length)
         Helper.save_usernames(usernames)
         
@@ -127,6 +161,8 @@ class Helper:
             "Data_sizes": []
         }
 
+        Return:
+        (dict): the variable storing the data from the json file
         """
         # 
         with open(filename, 'r') as file:

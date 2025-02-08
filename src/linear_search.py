@@ -25,7 +25,7 @@ class LinearSearch(BaseAlgorithm):
 
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
-        float: Time elapsed to find result
+        float: Time elapsed to find result (because of the decorator)
         """
         for element in self.data:
             if login==element:

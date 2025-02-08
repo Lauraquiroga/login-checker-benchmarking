@@ -55,7 +55,7 @@ class BloomFilter(BaseAlgorithm):
 
         Returns:
         bool: True if there is probability that the username exists in the dataset, False otherwise.
-        float: Time elapsed to find result
+        float: Time elapsed to find result (because of the decorator)
         """
         for i in range(self.k):
             digest = mmh3.hash(login, i) % self.size

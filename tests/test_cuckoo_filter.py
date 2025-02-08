@@ -3,6 +3,9 @@ import math
 from src.cuckoo_filter import CuckooFilter
 
 class TestCuckoo(unittest.TestCase):
+    """
+    Unit test class for the `CuckooFilter` class, using Python's built-in unittest framework.
+    """
 
     def test_initialization(self):
         """

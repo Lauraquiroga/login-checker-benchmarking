@@ -31,7 +31,9 @@ class CuckooFilter(BaseAlgorithm):
         fp_prob (float): Target False Positive probability in decimal
         b (int): The bucket size (number of entries a bucket can hold)
         max_evictions (int): Maximum number of evictions of an entry before deciding the filter is full
-        load_factor (float): 
+        load_factor (float): The load factor of the filter, which controls the density of entries in the filter. 
+        A higher load factor means more entries can be stored, but the chance of evictions increases.
+
         """
         self.bucket_size = b
         self.max_evictions = max_evictions
@@ -106,10 +108,10 @@ class CuckooFilter(BaseAlgorithm):
         Calculate the (first) index of an item in the filter.
 
         Parameters:
-        item (str):
+        item (str): The item for which the index is being calculated
 
         Return:
-
+        int: The calculated index of the item in the filter's bucket array. 
         '''
         item_hash = mmh3.hash_bytes(item)
         index = int.from_bytes(item_hash, byteorder='big') % self.capacity # Modulo: to keep the index within bounds

@@ -3,6 +3,9 @@ import random
 from src.bloom_filter import BloomFilter
 
 class TestBloom(unittest.TestCase):
+    """
+    Unit test class for the `BloomFilter` class, using Python's built-in unittest framework.
+    """
 
     def test_exists_item_added(self):
         """

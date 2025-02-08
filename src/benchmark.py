@@ -20,6 +20,7 @@ class Benchmark:
 
         Parameters:
         dataset (list): A list containing the full dataset of usernames to be used in benchmarking.
+        n_steps (int): Number of data sizes to consider in the simulation
         """
         self.dataset = dataset
         self.random_usernames = Helper.generate_usernames(10)
@@ -93,9 +94,10 @@ class Benchmark:
     def show_plot_comparison(self):
         """
         Generates and displays a comparison plot of execution times for each search algorithm.
+        One comparison plot, and one individual for each.
 
         The x-axis represents the dataset size, and the y-axis represents the average execution time.
-        Each algorithm is represented by a different color.
+        In the comparison plot each algorithm is represented by a different color.
 
         The results are retrieved from the `self.results` dictionary.
 
@@ -130,11 +132,19 @@ class Benchmark:
     def show_plot_comparison_from_results(self, results):
         """
         Generates and displays a comparison plot of execution times for each search algorithm.
+        One comparison plot, and one individual for each.
 
         The x-axis represents the dataset size, and the y-axis represents the average execution time.
-        Each algorithm is represented by a different color.
+        In the comparison plot each algorithm is represented by a different color.
 
-        The results are retrieved from the `self.results` dictionary.
+        The results are retrieved from the results parameter.
+
+        Parameters:
+        results (dict): the results from the simulation in the format:
+        {
+            "Exec_times": { "Linear": [], "Binary": [], "Hashing": [], "Bloom": [], "Cuckoo": [] },
+            "Data_sizes": []
+        }
 
         Return:
         None

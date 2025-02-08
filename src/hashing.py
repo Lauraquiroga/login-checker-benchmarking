@@ -26,7 +26,7 @@ class Hashing(BaseAlgorithm):
 
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
-        float: Time elapsed to find result
+        float: Time elapsed to find result (becasue of the decorator)
         """
         result = login in self.hashData
         return result

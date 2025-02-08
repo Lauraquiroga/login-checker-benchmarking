@@ -2,6 +2,9 @@ import unittest
 from src.cuckoo_bucket import Bucket
 
 class TestBucket(unittest.TestCase):
+    """
+    Unit test class for the `Bucket` class, using Python's built-in unittest framework.
+    """
 
     def test_initialization(self):
         """

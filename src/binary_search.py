@@ -26,7 +26,7 @@ class BinarySearch(BaseAlgorithm):
 
         Returns:
         bool: True if the username exists in the dataset, False otherwise.
-        float: Time elapsed to find result
+        float: Time elapsed to find result (because of the decorator)
         """      
         low = 0
         high = len(self.orderedData)-1
