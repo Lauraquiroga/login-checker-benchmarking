@@ -191,7 +191,6 @@ class CuckooFilter(BaseAlgorithm):
                 self.insert(login)
                 successful_insertions += 1
             except Exception as e:
-                print(f"Failed to insert {login} at size {successful_insertions}: {e}")
                 break  # Stop inserting if the filter is full
         
         return successful_insertions
