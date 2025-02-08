@@ -72,11 +72,13 @@ Follow these steps to run the project:
    python login_checker.py # or use python3 login_checker.py if needed
    ```
    This will run the simulation with the dataset included in the data folder (usernames_1M.txt).          
-   After running the project you will see the plots showing the run time complexities.       
+
+   After the execution, the results will be saved in the data/results folder and you will see the plots showing the run time complexities.
            
-   To use a custom dataset, place your file in the data folder and update the filename in login_checker.py.               
+   To use a custom dataset, place your file in the data folder and update the filename in login_checker.py.
+                
    If you want to run the project with a different number of simulation steps (variations of sizes in the dataset), update the n_steps parameter in the initialization of the Benchmark() object in the login_checker.py file.     
-   After the execution, the results will be saved in the data/results folder.           
+           
 
 5. **Run the unit tests**            
    To run the test cases use the following command.       
