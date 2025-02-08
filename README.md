@@ -38,7 +38,11 @@ This project implements five algorithms—linear search, binary search, hashing,
 │── requirements.txt  <-- Project requirements           
 
 ## Setup instructions   
-
+Follow these steps to run the SEIRSModel project:
+1. **Clone the project**
+   ```bash
+   git clone https://github.com/Lauraquiroga/login-checker-benchmarking.git
+   ```
 ## References
 Cuckoo filters were originally described in:       
         Fan, B., Andersen, D. G., Kaminsky, M., & Mitzenmacher, M. D. (2014, December).
