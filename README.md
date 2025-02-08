@@ -43,8 +43,8 @@ Follow these steps to run the project:
    cd login-checker-benchmarking
    ```
 2.  **Install dependencies**           
-   Ensure that you have Python installed on your system (recommended Python 3.12.7).      
-   Create and activate a virtual environment.
+   Ensure that you have Python installed on your system.     
+   Create and activate a virtual environment (recommended version for the virtual environment: Python 3.12.7).       
           
    Creation:      
    ```bash
