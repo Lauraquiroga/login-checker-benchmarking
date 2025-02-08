@@ -17,6 +17,5 @@ def main():
 
     LoginChecker(usernames_data)
 
-
 if __name__ == '__main__':
     main()

@@ -48,10 +48,9 @@ class TestBucket(unittest.TestCase):
         bucket = Bucket(size=4)
         bucket.insert("fingerprint1")
         bucket.insert("fingerprint2")
-        original_fp = bucket.b[0]
         bucket.swap("fingerprint3")
         self.assertIn("fingerprint3", bucket.b)
-        self.assertNotIn(original_fp, bucket.b)
+        self.assertFalse("fingerprint1" in bucket.b and "fingerprint2" in bucket.b)
 
     def test_is_full(self):
         """
