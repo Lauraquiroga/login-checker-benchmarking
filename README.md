@@ -45,20 +45,6 @@ Follow these steps to run the project:
 2.  **Install dependencies**           
    Ensure that you have Python installed on your system.     
    Create and activate a virtual environment (recommended version for the virtual environment: Python 3.12.7).       
-          
-   Creation:      
-   ```bash
-   python -m venv venvname # or use python3 -m venv venvname if necessary
-   ```
-   Activation:         
-   Windows (Command Prompt)        
-   ```bash
-   venvname\Scripts\activate
-   ``` 
-   Mac/Linux (Bash/Zsh)      
-   ```bash
-   source venvname/bin/activate
-   ```
 
    Install requirements mentioned in the requirements.txt file.       
    
