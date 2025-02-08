@@ -10,13 +10,13 @@ This project implements five algorithms—linear search, binary search, hashing,
 │&emsp;&emsp;│── COSC 520 -Assignment 1.pdf  <-- The assignment instructions      
 │      
 │── 📂 data/     
-│&emsp;&emsp;│── usernames_1M.txt  <-- Dataset file used to perform the runtime complexity analysis     
+│&emsp;&emsp;│── usernames_1M.txt  <-- Dataset file used to perform the runtime complexity analysis (synthetic data)    
 │&emsp;&emsp;│── 📂 results/  <-- Folder where results are stored after executing the program     
 │        
 │── 📂 plots/  <-- Plots showing sample results           
 │        
 │── 📂 src/   
-│&emsp;&emsp;│── benchmark.py   <-- Your benchmarking script       
+│&emsp;&emsp;│── benchmark.py   <-- Script to benchmark search algorithms       
 │&emsp;&emsp;│── utils.py       <-- Utility functions (e.g., load_usernames)     
 │&emsp;&emsp;│── base_algorithm.py  <-- Defines an abstract base class for search algorithms      
 │&emsp;&emsp;│── linear_search.py  <-- Implementation of Linear search    
@@ -55,17 +55,17 @@ Follow these steps to run the project:
 3. **Run the project**       
    Run the project from the root folder.       
    ```bash
-   python3 login_checker.py
+   python login_checker.py # or use python3 login_checker.py if needed
    ```
    This will run the simulation with the dataset included in the data folder (usernames_1M.txt).       
-   If you want to run the project with your own dataset, add the file in the data folder and update the file name in the main() method in the login_checker.py file.     
+   To use a custom dataset, place your file in the data folder and update the filename in login_checker.py.               
    If you want to run the project with a different number of simulation steps, update the n_steps parameter in the initialization of the Benchmark() object in the login_checker.py file.     
    After the execution, the results will be saved in the data/results folder.         
 
 4. **Run the unit tests**
    To run the test cases use the following command.       
    ```bash
-   python3 -m unittest discover -s tests
+   python -m unittest discover -s tests # or use python3 -m unittest discover -s tests if needed
    ```
    
 ## References
