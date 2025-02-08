@@ -46,11 +46,13 @@ Follow these steps to run the SEIRSModel project:
    ```
 2.  **Install dependencies**        
    Create and activate a virtual environment. Install requirements mentioned in the requirements.txt file.       
+   
    ```bash
    pip install -r requirements.txt
    ```
    Ensure that you have Python installed on your system.    
-3.  **Run the project**       
+   
+3. **Run the project**       
    Run the project from the root folder.       
    ```bash
    python3 login_checker.py
@@ -59,6 +61,7 @@ Follow these steps to run the SEIRSModel project:
    If you want to run the project with your own dataset, add the file in the data folder and update the file name in the main() method in the login_checker.py file.     
    If you want to run the project with a different number of simulation steps, update the n_steps parameter in the initialization of the Benchmark() object in the login_checker.py file.     
    After the execution, the results will be saved in the data/results folder.         
+
 4. **Run the unit tests**
    To run the test cases use the following command.       
    ```bash
