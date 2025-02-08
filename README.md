@@ -5,6 +5,33 @@ Author: Laura Quiroga (lquiroga)
 This project implements five algorithms—linear search, binary search, hashing, Bloom filter, and Cuckoo filter—to solve the Login Checker Problem. It also includes a numerical comparison of their performance in terms of time complexity.     
 
 ## Project Structure
+📂 project_root/     
+│── 📂 assets/       
+│&emsp;&emsp;│── COSC 520 -Assignment 1.pdf  <-- The assignment instructions      
+│      
+│── 📂 data/     
+│&emsp;&emsp;│── usernames_1M.txt  <-- Dataset file used to perform the runtime complexity analysis     
+│&emsp;&emsp;│── 📂 results/  <-- Folder where results are stored after executing the program     
+│        
+│── 📂 plots/  <-- Folder where the plots showing sample results are stored.       
+│        
+│── 📂 src/   
+│&emsp;&emsp;│── benchmark.py   <-- Your benchmarking script       
+│&emsp;&emsp;│── utils.py       <-- Utility functions (e.g., load_usernames)     
+│&emsp;&emsp;│── base_algorithm.py  <-- Defines an abstract base class for search algorithms      
+│&emsp;&emsp;│── linear_search.py  <-- Implementation of Linear search    
+│&emsp;&emsp;│── binary_search.py  <-- Implementation of Binary search    
+│&emsp;&emsp;│── hashing.py  <-- Implementation of Hashing     
+│&emsp;&emsp;│── bloom_filter.py  <-- Implementation of Bloom Filter     
+│&emsp;&emsp;│── cuckoo_filter.py  <-- Implementation of Cuckoo Filter     
+│&emsp;&emsp;│── cuckoo_bucket.py  <-- Implementation of Cuckoo Bucket       
+│       
+│── 📂 tests/  <-- Unit tests     
+│&emsp;&emsp;│── test_search_algorithms.py  <--     
+│&emsp;&emsp;│── test_search_algorithms.py  <--     
+│&emsp;&emsp;│── test_search_algorithms.py  <--     
+│      
+│── README.md       
 
 ## Setup instructions   
 
