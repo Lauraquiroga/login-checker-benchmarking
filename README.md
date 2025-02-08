@@ -56,8 +56,14 @@ Follow these steps to run the SEIRSModel project:
    python3 login_checker.py
    ```
    This will run the simulation with the dataset included in the data folder (usernames_1M.txt).       
-   If you want to run the project with your own dataset, add the file in the data folder and update the file name in the main() method in the login_checker.py file.
-4. 
+   If you want to run the project with your own dataset, add the file in the data folder and update the file name in the main() method in the login_checker.py file.     
+   If you want to run the project with a different number of simulation steps, update the n_steps parameter in the initialization of the Benchmark() object in the login_checker.py file.     
+   After the execution, the results will be saved in the data/results folder.         
+4. **Run the unit tests**
+   To run the test cases use the following command.       
+   ```bash
+   python3 -m unittest discover -s tests
+   ```
    
 ## References
 Cuckoo filters were originally described in:       
