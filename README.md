@@ -38,7 +38,7 @@ This project implements five algorithms—linear search, binary search, hashing,
 │── requirements.txt  <-- Project requirements           
 
 ## Setup instructions   
-Follow these steps to run the SEIRSModel project:
+Follow these steps to run the project:
 1. **Clone the project**
    ```bash
    git clone https://github.com/Lauraquiroga/login-checker-benchmarking.git
