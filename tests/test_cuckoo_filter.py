@@ -8,9 +8,9 @@ class TestCuckoo(unittest.TestCase):
         """
         Test initialization: capacity and fingerprint size calculations
         """
-        filter = CuckooFilter(data_size=100, fp_prob=0.01)
-        self.assertEqual(filter.capacity, math.ceil(100 / (0.9 * 2)))
-        self.assertEqual(filter.fingerprint_size, math.ceil(math.log2(2 * 2 / 0.01) / 8))
+        filter = CuckooFilter(data_size=100, fp_prob=0.01, b=4, load_factor=0.75)
+        self.assertEqual(filter.capacity, math.ceil(100 / (0.75 * 4)))
+        self.assertEqual(filter.fingerprint_size, math.ceil(math.log2(2 * 4 / 0.01) / 8))
                                                             
     def test_exists_items_added(self):
         """
