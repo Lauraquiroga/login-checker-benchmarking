@@ -11,9 +11,7 @@ This project implements five algorithms—linear search, binary search, hashing,
 │      
 │── 📂 data/     
 │&emsp;&emsp;│── usernames_1M.txt  <-- Dataset file used to perform the runtime complexity analysis (synthetic data)    
-│&emsp;&emsp;│── 📂 results/  <-- Folder where results are stored after executing the program     
-│        
-│── 📂 plots/  <-- Plots showing sample results           
+│&emsp;&emsp;│── 📂 results/  <-- Folder where results are stored after executing the program           
 │        
 │── 📂 src/   
 │&emsp;&emsp;│── benchmark.py   <-- Script to benchmark search algorithms       
