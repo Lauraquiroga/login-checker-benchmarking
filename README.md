@@ -43,7 +43,23 @@ Follow these steps to run the project:
    cd login-checker-benchmarking
    ```
 2.  **Install dependencies**        
-   Create and activate a virtual environment. Install requirements mentioned in the requirements.txt file.       
+   Create and activate a virtual environment.
+         
+   Creation:      
+   ```bash
+   python -m venv venvname # or use python3 -m venv venvname if necessary
+   ```
+   Activation:         
+   Windows (Command Prompt)        
+   ```bash
+   venvname\Scripts\activate
+   ``` 
+   Mac/Linux (Bash/Zsh)      
+   ```bash
+   source venvname/bin/activate
+   ```
+
+   Install requirements mentioned in the requirements.txt file.       
    
    ```bash
    pip install -r requirements.txt
