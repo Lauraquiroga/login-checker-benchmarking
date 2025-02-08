@@ -64,7 +64,7 @@ Follow these steps to run the project:
    ```bash
    pip install -r requirements.txt
    ```
-   Ensure that you have Python installed on your system.    
+   Ensure that you have Python installed on your system (recommended Python 3.12.7).    
    
 3. **Run the project**       
    Run the project from the root folder.       
