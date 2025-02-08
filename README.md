@@ -42,7 +42,23 @@ Follow these steps to run the SEIRSModel project:
 1. **Clone the project**
    ```bash
    git clone https://github.com/Lauraquiroga/login-checker-benchmarking.git
+   cd login-checker-benchmarking
    ```
+2.  **Install dependencies**        
+   Create and activate a virtual environment. Install requirements mentioned in the requirements.txt file.       
+   ```bash
+   pip install -r requirements.txt
+   ```
+   Ensure that you have Python installed on your system.    
+3.  **Run the project**       
+   Run the project from the root folder.       
+   ```bash
+   python3 login_checker.py
+   ```
+   This will run the simulation with the dataset included in the data folder (usernames_1M.txt).       
+   If you want to run the project with your own dataset, add the file in the data folder and update the file name in the main() method in the login_checker.py file.
+4. 
+   
 ## References
 Cuckoo filters were originally described in:       
         Fan, B., Andersen, D. G., Kaminsky, M., & Mitzenmacher, M. D. (2014, December).
