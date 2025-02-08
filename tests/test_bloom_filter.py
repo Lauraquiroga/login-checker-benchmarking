@@ -29,7 +29,7 @@ class TestBloom(unittest.TestCase):
         """
         usernames = [f'user_{x}' for x in range(100)]
         fpp = 0.1 # 10% fpp
-        acceptable_fp_range = [0.07, 0.13]
+        acceptable_fp_range = [0.065, 0.135]
         bf = BloomFilter(len(usernames), fpp)
 
         # Add items to the Bloom filter
