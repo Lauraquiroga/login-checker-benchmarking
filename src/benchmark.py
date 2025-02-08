@@ -14,7 +14,7 @@ class Benchmark:
     Benchmarking different search algorithms by varying search space size.
     """
 
-    def __init__(self, dataset):
+    def __init__(self, dataset, n_steps=10):
         """
         Initializes the Benchmark class with the dataset and prepares the necessary attributes.
 
@@ -32,6 +32,7 @@ class Benchmark:
             'Cuckoo': 'purple'
         }
         self.dataset_sizes = []  # Tracking dataset sizes
+        self.n_steps = n_steps
 
     def run_simulation(self):
         """
@@ -44,10 +45,9 @@ class Benchmark:
         dict: A dictionary containing the average execution times for each algorithm across different dataset sizes.
         """
         data_size = len(self.dataset)
-        n_steps = 10 #10k
-        step_size = data_size//n_steps
+        step_size = data_size//self.n_steps
         
-        for i in range(n_steps):
+        for i in range(self.n_steps):
             length = (i+1) * step_size
             search_space = self.dataset[:length]
             self.dataset_sizes.append(length)

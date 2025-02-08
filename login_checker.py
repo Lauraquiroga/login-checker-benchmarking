@@ -4,7 +4,7 @@ from src.benchmark import Benchmark
 class LoginChecker:
 
     def __init__(self, usernames):
-        b = Benchmark(usernames)
+        b = Benchmark(usernames, n_steps=10)
         b.run_simulation()
         Helper.save_results(b.results, b.dataset_sizes)
         b.show_plot_comparison()
